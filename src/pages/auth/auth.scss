@@ -1,0 +1,112 @@
+.auth-main-container{
+    
+width: 100%;
+display: flex;
+align-items: center;
+    justify-content: center;
+    border-top: 1px solid #D8D8D8;
+
+    .auth-main {
+  display: flex;
+  flex-direction: column;
+  width: 34.722vw;
+  max-width: 500px;
+  /*height: 75.62vh;
+    max-height: 581px;*/
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 15vh;
+  padding-bottom: 33.25vh;
+
+  
+
+  .enter-or-regist {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 5px;
+    margin-top: 34px;
+    padding-bottom: 5px;
+    background-color: #efefef;
+    border-radius: 8px;
+    button {
+      position: relative;
+      max-width: 236px;
+      z-index: 2;
+      width: 47.2%;
+      height: 50px;
+      background-color: #efefef00;
+      border: 0cap;
+    }
+
+    span {
+      position: absolute;
+      translate: -53.5%;
+      background-color: white;
+      width: 16.3vw;
+      max-width: 236px;
+      height: 50px;
+      z-index: 1;
+      border-radius: 8px;
+      transition-duration: 300ms;
+    }
+  }
+
+  #regist-container-form {
+    display: grid;
+    grid-template-columns: repeat(2, 100%);
+    justify-content: center
+  }
+
+  #enter-container-form {
+    
+  }
+
+  form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    transition-duration: 300ms;
+    margin-top: 100px;
+    gap: 24px;
+
+    #checkbox-div {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 6px;
+      align-items: center;
+      input {
+        width: 16px;
+        height: 17.17px;
+      }
+    }
+
+    input {
+      transition-duration: 300ms;
+      border: 0cap;
+      border-bottom: 1px solid #707070;
+      width: 100%;
+      height: 39px;
+
+      ::placeholder {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .submitBtn{
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 53px;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 52px;
+  }
+}
+
+}
+
+

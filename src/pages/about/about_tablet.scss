@@ -1,0 +1,92 @@
+$beige: #d8d8d8;
+$maxWDTH: 1248px;
+
+$maxWDTH: 665.5px;
+
+@media all and (max-width: 769px) {
+  .about-us {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6.125vh;
+    padding-top: 6.1vh;
+    /*padding-left: 9.65vw;
+  padding-right: 9.65vw;*/
+    width: 79.86vw;
+    max-width: $maxWDTH;
+    border-top: 1px solid $beige;
+
+    .about-us-heading {
+      text-align: center;
+
+      h2 {
+        margin: 0%;
+        font-weight: 500;
+        font-size: 33px;
+        line-height: 43px;
+      }
+      h4 {
+        margin: 0%;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+
+    .about-us-p-first {
+      font-size: 16px;
+      line-height: 27px;
+      margin: 0%;
+      text-align: justify;
+    }
+
+    .about-us-image {
+      width: 79.86vw;
+      max-width: $maxWDTH;
+      height: 37.5vh;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 8px;
+      background-image: url("/assets/images/about/hands.png");
+    }
+
+    .about-us-article {
+      width: 79.86vw;
+      max-width: $maxWDTH;
+
+      .ul-container {
+        display: flex;
+
+        padding-left: 3.88vw;
+        padding-right: 2.5vw;
+        justify-content: center;
+        gap: 0.69vw;
+
+        ul {
+          width: 36.11vw;
+          ::marker {
+            font-size: 16px;
+
+            content: "●";
+          }
+          li {
+            font-size: 16px;
+
+            line-height: 27px;
+            vertical-align: middle;
+            p {
+              margin: 0%;
+              margin-left: 10px;
+              height: 100%;
+
+              font-size: 16px;
+
+              line-height: 27px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
