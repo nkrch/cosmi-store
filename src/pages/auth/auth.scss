@@ -71,7 +71,7 @@ align-items: center;
     margin-top: 100px;
     gap: 24px;
 
-    #checkbox-div {
+    .checkbox-div {
       display: flex;
       flex-direction: row-reverse;
       justify-content: flex-end;
@@ -96,10 +96,18 @@ align-items: center;
     }
   }
 
+.submitContainer{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
   .submitBtn{
     background-color: black;
     color: white;
-    width: 100%;
+    width: 30.7vw;
     height: 53px;
     font-size: 16px;
     text-transform: uppercase;
