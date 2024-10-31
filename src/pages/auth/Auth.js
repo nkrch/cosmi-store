@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { type } from "@testing-library/user-event/dist/type";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import "./auth.scss";
 import { obj } from "./authObjs";
 import { emptyFunction, changingInputs } from "./authObjs";
@@ -8,22 +8,43 @@ import { initializeAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+import { AuthContext } from "../../data/context/Context";
+
 export function Auth() {
-  const [option, setOption] = useState(obj.enter);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [option, setOption] = useState(obj.enter),
+    [entEmail, setEntEmail] = useState(""),
+    [entPass, setEntPass] = useState(""),
+    [registEmail, setRegistEmail] = useState(""),
+    [registPass, setRegistPass] = useState(""),
+    [repeatPass, setRepeatPass] = useState(""),
+    [error, setError] = useState(""),
+    [rememberBtn, setRememberBtn] = useState(true),
+    [email, setEmail] = useState(""),
+    [password, setPassword] = useState(""),
+    [registData, setRegistData] = useState("");
+  const [translate, setTranslate] = useState(-53.5 + "%");
+  const [resultObj, setResultObj] = useState({});
+
+  const contextData = useContext(AuthContext)[0],
+    setContextData = useContext(AuthContext)[1];
+  console.log(contextData);
+
+  function dataBaseLoad(email, password) {
+    console.log(email, password);
+  }
+
+  function finalDataSet() {}
 
   function submitFunc(event) {
     console.log("event prevented");
     event.preventDefault();
     const form = document.querySelector("form");
-    console.log(option);
+
+    console.log(resultObj);
 
     if (option.option === "enter") {
       console.log("enter");
 
-      console.log(option.fields[0].value);
-      console.log(option.fields[1].value);
       const value1 = option.fields[0].value;
       const value2 = option.fields[1].value;
       signInWithEmailAndPassword(auth, value1, value2)
@@ -32,6 +53,9 @@ export function Auth() {
           setError("");
           form.reset();
           console.log("successful enter");
+          console.log(value1, value2);
+          dataBaseLoad(value1, value2);
+          finalDataSet(user); //внести данные в контекст
         })
         .catch((error) => {
           console.log(error);
@@ -46,11 +70,10 @@ export function Auth() {
         setError("Пароли не совпадают");
         console.log("Пароли не совпадают");
       } else {
-        const registSurname = form.elements["regist-surname"].value;
-        const registName = form.elements["regist-name"].value;
+        console.log(form.elements["regist-email"].value.toLowerCase());
         setEmail(form.elements["regist-email"].value.toLowerCase());
         setPassword(form.elements["regist-password"].value);
-        const registBirthday = form.elements["regist-birthday"].value;
+
         console.log(email);
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
@@ -68,13 +91,6 @@ export function Auth() {
   useEffect(() => {
     setError("");
   }, [option]);
-
-  const enterBtn = document.getElementById("enter-btn-option");
-  //document.getElementById('auth-span').style.left=document.getElementById('enter-btn-option').clientLeft+'px';
-
-  const [translate, setTranslate] = useState(-53.5 + "%");
-
-  const [error, setError] = useState("");
 
   function handleClck(act) {
     switch (act) {
@@ -113,6 +129,8 @@ export function Auth() {
                   <label for={el.id}>{el.placeholder}</label>
                   <input
                     name={el.id}
+                    id={el.id}
+                    key={el.id}
                     type={el.type}
                     onChange={el.events.onChange}
                   />
@@ -123,6 +141,7 @@ export function Auth() {
             return (
               <input
                 name={el.id}
+                id={el.id}
                 key={el.id}
                 placeholder={el.placeholder}
                 type={el.type}

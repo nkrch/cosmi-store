@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { Bar } from "./components/Bar";
 import { Footer } from "./components/Footer";
-
+import { AuthContext } from "./data/context/Context";
+import { Context } from "./data/context/Context";
 const Home = lazy(() => import("./pages/home/Home"));
 const About = lazy(() =>
   import("./pages/about/About").then((module) => ({ default: module.About }))
@@ -27,18 +28,20 @@ const Betha_testing = lazy(() =>
 export const App = () => {
   return (
     <div className="App">
-      <Suspense fallback={"Loading"}>
-        <Bar />
-        <Routes element={<Bar />}>
-          <Route path="/" index element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/basket" element={<Basket />} />
-          <Route path="/test" element={<Betha_testing />} />
-        </Routes>
-        <Footer />
-      </Suspense>
+      <Context>
+        <Suspense fallback={"Loading"} element={<Bar />}>
+          <Bar />
+          <Routes element={<Bar />}>
+            <Route path="/" index element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/basket" element={<Basket />} />
+            <Route path="/test" element={<Betha_testing />} />
+          </Routes>
+          <Footer />
+        </Suspense>
+      </Context>
     </div>
   );
 };
