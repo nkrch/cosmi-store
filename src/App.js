@@ -3,7 +3,9 @@ import { lazy, Suspense } from "react";
 import { Bar } from "./components/Bar";
 import { Footer } from "./components/Footer";
 import { AuthContext } from "./data/context/Context";
+import { Profile } from "./pages/auth/Profile";
 import { Context } from "./data/context/Context";
+import { useEffect } from "react";
 const Home = lazy(() => import("./pages/home/Home"));
 const About = lazy(() =>
   import("./pages/about/About").then((module) => ({ default: module.About }))
@@ -26,6 +28,9 @@ const Betha_testing = lazy(() =>
 );
 
 export const App = () => {
+  useEffect(() => {
+    console.log(AuthContext);
+  }, [AuthContext]);
   return (
     <div className="App">
       <Context>
@@ -38,6 +43,7 @@ export const App = () => {
             <Route path="/auth" element={<Auth />} />
             <Route path="/basket" element={<Basket />} />
             <Route path="/test" element={<Betha_testing />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
           <Footer />
         </Suspense>
